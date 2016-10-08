@@ -9,10 +9,16 @@ import java.util.List;
  * Created by Maxwell on 2016-09-27.
  */
 public class TweetListTest extends ActivityInstrumentationTestCase2 {
+    /**
+     * Instantiates a new Tweet list test.
+     */
     public TweetListTest() {
         super(LonelyTwitterActivity.class);
     }
 
+    /**
+     * Test add tweet.
+     */
     public void testAddTweet() {
         TweetList list = new TweetList();
 
@@ -22,6 +28,9 @@ public class TweetListTest extends ActivityInstrumentationTestCase2 {
         assertTrue(list.hasTweet(tweet));
     }
 
+    /**
+     * Test has tweet.
+     */
     public void testHasTweet() {
         TweetList list = new TweetList();
         Tweet tweet = new NormalTweet("Hello!");
@@ -31,6 +40,9 @@ public class TweetListTest extends ActivityInstrumentationTestCase2 {
         assertTrue(list.hasTweet(tweet));
     }
 
+    /**
+     * Test get tweet.
+     */
     public void testGetTweet() {
         TweetList list = new TweetList();
         Tweet a = new NormalTweet("Hello!");
@@ -43,6 +55,9 @@ public class TweetListTest extends ActivityInstrumentationTestCase2 {
         assertEquals(b, list.getTweet(1));
     }
 
+    /**
+     * Test remove tweet.
+     */
     public void testRemoveTweet() {
         TweetList list = new TweetList();
 
@@ -54,6 +69,9 @@ public class TweetListTest extends ActivityInstrumentationTestCase2 {
         assertFalse(list.hasTweet(a));
     }
 
+    /**
+     * Test duplicate tweet.
+     */
     public void testDuplicateTweet() {
         TweetList list = new TweetList();
         Tweet a = new NormalTweet("Hello!");
@@ -66,6 +84,9 @@ public class TweetListTest extends ActivityInstrumentationTestCase2 {
         }
     }
 
+    /**
+     * Test get count.
+     */
     public void testGetCount() {
         TweetList list = new TweetList();
         Tweet a = new NormalTweet("Hello!");
@@ -77,6 +98,9 @@ public class TweetListTest extends ActivityInstrumentationTestCase2 {
         assertTrue(2==list.getCount());
     }
 
+    /**
+     * Test get tweets.
+     */
     public void testGetTweets() {
         TweetList list = new TweetList();
         Tweet a = new NormalTweet("Hello!", new Date("September 13 2003"));
