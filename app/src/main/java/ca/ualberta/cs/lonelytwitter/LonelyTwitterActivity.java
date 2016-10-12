@@ -20,8 +20,10 @@ import java.util.Date;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -67,12 +69,18 @@ public class LonelyTwitterActivity extends Activity {
      * @see #saveInFile()
      * @see #
      */
+
+	private Activity activity = this;
 	private static final String FILE_NAME = "file.sav";
 	private EditText bodyText;
 	private ListView oldTweetsList;
 	private ArrayList<Tweet> tweetList = new ArrayList<Tweet>();
 	private ArrayAdapter<Tweet> adapter;
 	private LonelyTwitterActivity myApp = this;
+
+	public ListView getOldTweetsList() {
+		return oldTweetsList;
+	}
 
 	/** Called when the activity is first created. */
 	@Override
@@ -107,7 +115,19 @@ public class LonelyTwitterActivity extends Activity {
 				saveInFile();
 			}
 		});
+
+		oldTweetsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+				Intent intent = new Intent(activity, EditTweetActivity.class);
+				Tweet tweet = (Tweet) parent.getItemAtPosition(position);
+				intent.putExtra("tweet_content", tweet.getMessage());
+				startActivity(intent);
+			}
+		});
+
 	}
+
+
 
 	@Override
 	protected void onStart() {
